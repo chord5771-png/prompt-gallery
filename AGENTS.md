@@ -11,7 +11,7 @@
 - `useCases`：适用场景数组。
 - `tags`：搜索标签，可添加自然语言近义表达。
 - `prompt`：用户提供的**完整原始提示词**，原样保留段落、标点和措辞。不能改写、删减或自动补充内容。
-- `cover`：仓库内的示例或示意图片路径；`coverType` 为 `illustration` 或 `example`。没有授权真实样图时只能使用 `illustration`。
+- `cover`：仓库内的示例或示意图片路径；`coverType` 为 `illustration`（风格示意）、`generated`（AI 生成示例）或 `example`（授权的真实示例）。没有授权真实样图时不能使用 `example`。宽幅多宫格可选 `coverLayout: "wide"`，让详情展示完整图像。
 - `version`：正整数版本号；`createdAt`、`updatedAt`：`YYYY-MM-DD` 日期。
 
 ## 收录规则

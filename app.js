@@ -48,13 +48,14 @@ function card(item) {
     openPrompt(item);
   });
 
-  const visual = element('div', 'card-image-wrap');
+  const visual = element('div', `card-image-wrap${item.coverLayout === 'wide' ? ' wide' : ''}`);
   const image = document.createElement('img');
   image.src = item.cover;
-  image.alt = item.coverType === 'illustration' ? `${item.name}风格示意图，并非真实生成效果` : `${item.name}示例图`;
+  image.alt = item.coverType === 'illustration' ? `${item.name}风格示意图，并非真实生成效果` : `${item.name}${item.coverType === 'generated' ? 'AI 生成示例图' : '示例图'}`;
   image.loading = 'lazy';
   visual.append(image);
   if (item.coverType === 'illustration') visual.append(element('span', 'cover-label', '风格示意'));
+  if (item.coverType === 'generated') visual.append(element('span', 'cover-label', 'AI 生成示例'));
   visual.append(element('span', 'card-arrow', '↗'));
   link.append(visual);
 
@@ -117,9 +118,11 @@ function fillChips(container, values) {
 }
 
 function openPrompt(item) {
+  dialog.dataset.coverLayout = item.coverLayout || 'portrait';
   $('detail-image').src = item.cover;
-  $('detail-image').alt = item.coverType === 'illustration' ? `${item.name}风格示意图，并非真实生成效果` : `${item.name}示例图`;
-  $('detail-cover-label').hidden = item.coverType !== 'illustration';
+  $('detail-image').alt = item.coverType === 'illustration' ? `${item.name}风格示意图，并非真实生成效果` : `${item.name}${item.coverType === 'generated' ? 'AI 生成示例图' : '示例图'}`;
+  $('detail-cover-label').hidden = !['illustration', 'generated'].includes(item.coverType);
+  $('detail-cover-label').textContent = item.coverType === 'generated' ? 'AI 生成示例 · 非真实拍摄' : '风格示意 · 非真实效果图';
   $('detail-category').textContent = `${item.category} / ${item.subcategory || '风格'}`;
   $('detail-title').textContent = item.name;
   $('detail-description').textContent = item.description;
@@ -184,7 +187,7 @@ function setupDialog() {
 async function init() {
   setupDialog();
   try {
-    const response = await fetch('data/prompts.json');
+    const response = await fetch('data/prompts.json', { cache: 'no-cache' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     if (data.schemaVersion !== 1 || !Array.isArray(data.prompts)) throw new Error('Unsupported data format');

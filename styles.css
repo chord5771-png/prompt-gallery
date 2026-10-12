@@ -2,3 +2,5 @@
 
 @media(max-width:480px){.hero h1{font-size:clamp(40px,10vw,48px)}.card-grid.single{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:480px){.detail-content h2{font-size:28px}}
+
+.card-image-wrap.wide{aspect-ratio:2/1}.detail-dialog[data-cover-layout="wide"] .detail-shell{grid-template-columns:1fr}.detail-dialog[data-cover-layout="wide"] .detail-visual{min-height:0;aspect-ratio:2/1}.detail-dialog[data-cover-layout="wide"] .detail-visual img{position:static;width:100%;height:auto;object-fit:contain}

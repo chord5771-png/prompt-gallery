@@ -50,8 +50,10 @@ def main():
                 fail(f"{ident}: {key} must contain nonempty strings")
             if len(item[key]) != len(set(item[key])):
                 fail(f"{ident}: repeated value in {key}")
-        if item["coverType"] not in ("illustration", "example"):
+        if item["coverType"] not in ("illustration", "generated", "example"):
             fail(f"{ident}: invalid coverType")
+        if item.get("coverLayout", "portrait") not in ("portrait", "wide"):
+            fail(f"{ident}: invalid coverLayout")
         cover = item["cover"]
         if not isinstance(cover, str) or not cover.startswith("assets/covers/") or not (ROOT / cover).is_file():
             fail(f"{ident}: cover missing or outside assets/covers")
