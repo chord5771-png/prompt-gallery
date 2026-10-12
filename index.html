@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f6f2">
+    <meta name="description" content="Prompt Gallery：收藏、查找与分享 AI 图片提示词。">
+    <title>Prompt Gallery · 图片提示词画廊</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Prompt Gallery 首页"><span class="brand-mark" aria-hidden="true">✳</span><span>Prompt<span class="brand-light">Gallery</span></span></a>
+      <span class="header-note">一座关于想象力的提示词画廊</span>
+      <a class="header-link" href="https://github.com/chord5771-png/prompt-gallery" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> CURATED PROMPT LIBRARY <span class="hero-edition">/ 01</span></p>
+          <h1 id="hero-title">好的画面，<br><em>从一个想法开始。</em></h1>
+          <p class="hero-description">收藏值得反复使用的图片提示词。浏览风格、找到灵感，然后复制完整原文，开启下一次创作。</p>
+          <a class="hero-cta" href="#gallery">探索画廊 <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-core"><span>IDEAS<br>INTO<br>IMAGES</span></div><span class="art-caption">A VISUAL INDEX OF POSSIBILITY</span></div>
+      </section>
+
+      <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+        <div class="section-heading"><div><p class="eyebrow muted">THE COLLECTION / 精选收藏</p><h2 id="gallery-title">探索风格<span class="count" id="result-count"></span></h2></div><p class="section-intro">每一种风格，都有它独特的视角。</p></div>
+
+        <div class="toolbar">
+          <label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><span class="sr-only">搜索提示词</span><input id="search-input" type="search" placeholder="试试「大头」「俯拍」「脑袋很大的人」" autocomplete="off"></label>
+          <label class="category-field"><span class="sr-only">按分类筛选</span><select id="category-select"><option value="">全部分类</option></select><span aria-hidden="true">⌄</span></label>
+        </div>
+        <div class="tag-filters" id="tag-filters" aria-label="按标签筛选"></div>
+        <p class="result-message" id="result-message" aria-live="polite"></p>
+        <div class="card-grid" id="card-grid"></div>
+        <div class="empty-state" id="empty-state" hidden><div class="empty-icon" aria-hidden="true">✳</div><h3>暂时没有找到这个风格</h3><p>换个关键词试试，比如“大头”或“俯拍”。</p><button id="reset-filters" type="button">清除筛选 <span aria-hidden="true">↗</span></button></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>✳ &nbsp; PROMPT GALLERY</span><span>为每一次灵感，留一个位置。</span><span>© 2026</span></footer>
+
+    <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title">
+      <div class="detail-shell"><button class="close-button" id="close-detail" type="button" aria-label="关闭详情">×</button><div class="detail-visual"><img id="detail-image" alt=""><span class="cover-label" id="detail-cover-label">风格示意 · 非真实效果图</span></div><div class="detail-content"><p class="eyebrow muted" id="detail-category"></p><h2 id="detail-title"></h2><p class="detail-description" id="detail-description"></p><div class="detail-block"><h3>适用场景</h3><div class="use-case-list" id="detail-use-cases"></div></div><div class="detail-block"><h3>搜索标签</h3><div class="detail-tags" id="detail-tags"></div></div><div class="prompt-heading"><h3>完整原始提示词</h3><span id="detail-version"></span></div><pre class="prompt-text" id="detail-prompt"></pre><div class="detail-actions"><button class="copy-button" id="copy-button" type="button">复制完整提示词 <span aria-hidden="true">↗</span></button><button class="share-button" id="share-button" type="button">复制分享链接</button></div><p class="detail-feedback" id="detail-feedback" aria-live="polite"></p></div></div>
+    </dialog>
+  </body>
+</html>
