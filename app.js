@@ -16,7 +16,11 @@ function matches(item) {
   if (state.tag && !item.tags.includes(state.tag)) return false;
   const terms = state.query.trim().split(/\s+/).map(normalize).filter(Boolean);
   const haystack = searchText(item);
-  return terms.every((term) => haystack.includes(term));
+  if (terms.every((term) => haystack.includes(term))) return true;
+  // Longer natural-language descriptions can contain several existing tags.
+  const query = normalize(state.query);
+  const matchedTags = item.tags.map(normalize).filter((tag) => tag.length >= 2 && query.includes(tag));
+  return matchedTags.length >= (query.length > 8 ? 2 : 1);
 }
 
 function element(tag, className, text) {
