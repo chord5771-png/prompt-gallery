@@ -128,7 +128,7 @@ function openPrompt(item) {
   $('detail-description').textContent = item.description;
   fillChips($('detail-use-cases'), item.useCases);
   fillChips($('detail-tags'), item.tags);
-  $('detail-version').textContent = `V${item.version} · ${item.createdAt}`;
+  $('detail-version').textContent = `V${item.version} · ${item.updatedAt}`;
   $('detail-prompt').textContent = item.prompt;
   $('detail-feedback').textContent = '';
   $('copy-button').dataset.promptId = item.id;
