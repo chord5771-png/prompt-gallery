@@ -52,7 +52,7 @@ def main():
                 fail(f"{ident}: repeated value in {key}")
         if item["coverType"] not in ("illustration", "generated", "example"):
             fail(f"{ident}: invalid coverType")
-        if item.get("coverLayout", "portrait") not in ("portrait", "wide"):
+        if item.get("coverLayout", "portrait") not in ("portrait", "square", "wide"):
             fail(f"{ident}: invalid coverLayout")
         cover = item["cover"]
         if not isinstance(cover, str) or not cover.startswith("assets/covers/") or not (ROOT / cover).is_file():
